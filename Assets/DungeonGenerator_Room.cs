@@ -8,6 +8,7 @@ public class DungeonGenerator_Room : MonoBehaviour
     [Tooltip("Doors")]
     [SerializeField]
     Transform[] doors;
+    [SerializeField]
     bool[] doorsConnected;
     bool isFullConnected;
     [Space]
@@ -15,9 +16,19 @@ public class DungeonGenerator_Room : MonoBehaviour
     [SerializeField]
     byte size;
 
-    public Transform[] GetDoors()
+    void Awake()
     {
-        return doors;
+        int length = doors.Length;
+        doorsConnected = new bool[length];
+        for (int i = 0; i < length; i++)
+        {
+            doorsConnected[i] = false;
+        }
+    }
+
+    public Transform GetDoor(int i)
+    {
+        return doors[i];
     }
 
     public int GetDoorsCount()

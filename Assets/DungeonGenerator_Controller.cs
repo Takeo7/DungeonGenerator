@@ -22,17 +22,26 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
     #endregion
 
-    [SerializeField]
+    
     [Header("Neded to Generate:")]
-    [Tooltip("Array of Rooms")]
+    [Tooltip("Arrays of Rooms")]
+    [SerializeField]
     GameObject[] one_prefabs;
+    [SerializeField]
     GameObject[] two_prefabs;
+    [SerializeField]
     GameObject[] three_prefabs;
+    [SerializeField]
     GameObject[] four_prefabs;
     [Space]
-    [SerializeField]
     [Tooltip("Size of the dungeon in squares^2")]
+    [SerializeField]
     int dungeon_size;
+
+    private void Start()
+    {
+        GenerateDungeon();
+    }
 
     void GenerateDungeon()
     {
@@ -48,18 +57,85 @@ public class DungeonGenerator_Controller : MonoBehaviour
         tempRoomScript[0] = tempRooms[0].GetComponent<DungeonGenerator_Room>();
         currentParentRoom = 0;
 
-
+        Debug.Log(length);
         for (int i = 1; i < length; i++)
         {
-            if (i < 4)
+            if (i > length-4)
             {
-                if (i < 3)
+                if (i > length - 3)
                 {
-                    if (i < 2)
+                    if (i > length - 2)
                     {
-                        rand = 0;
-                        
+                        int doorsLength = tempRoomScript[currentParentRoom].GetDoorsCount();
+                        for (int d = 0; d < doorsLength; d++)
+                        {
+                            if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
+                            {
+                                rand = 0;
+                                tempRooms[i] = Instantiate(NewRoom(rand));
+                                tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+
+                                //Colocar la room
+                                Vector3 finalPos;
+
+
+
+
+                                tempRoomScript[i].ConnectDoor(0);
+                                i++;
+                            }
+                        }
+
+                        currentParentRoom++;
                     }
+                    else
+                    {
+                        int doorsLength = tempRoomScript[currentParentRoom].GetDoorsCount();
+                        for (int d = 0; d < doorsLength; d++)
+                        {
+                            if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
+                            {
+                                rand = 1;
+                                tempRooms[i] = Instantiate(NewRoom(rand));
+                                tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+
+                                //Colocar la room
+                                Vector3 finalPos;
+
+
+
+
+                                tempRoomScript[i].ConnectDoor(0);
+                                i++;
+                            }
+                        }
+
+                        currentParentRoom++;
+                    }
+                }
+                else
+                {
+                    int doorsLength = tempRoomScript[currentParentRoom].GetDoorsCount();
+                    for (int d = 0; d < doorsLength; d++)
+                    {
+                        if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
+                        {
+                            rand = 0;
+                            tempRooms[i] = Instantiate(NewRoom(rand));
+                            tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+
+                            //Colocar la room
+                            
+
+
+
+
+                            tempRoomScript[i].ConnectDoor(0);
+                            i++;
+                        }
+                    }
+
+                    currentParentRoom++;
                 }
             }
             else
@@ -71,9 +147,12 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     {
                         rand = Random.Range(0, 3);
                         tempRooms[i] = Instantiate(NewRoom(rand));
+                        tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
 
                         //Colocar la room
+                        Vector3 finalPos;
 
+                        
 
 
                         tempRoomScript[i].ConnectDoor(0);
@@ -84,9 +163,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 currentParentRoom++;
 
             }
-
-            
-
+            Debug.Log(i);
         }
     }
 
