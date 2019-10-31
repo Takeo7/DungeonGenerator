@@ -72,17 +72,19 @@ public class DungeonGenerator_Controller : MonoBehaviour
                             if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
                             {
                                 rand = 0;
-                                tempRooms[i] = Instantiate(NewRoom(rand));
-                                tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+                                tempRooms[i + d] = Instantiate(NewRoom(rand));
+                                tempRoomScript[i + d] = tempRooms[i+d].GetComponent<DungeonGenerator_Room>();
 
                                 //Colocar la room
-                                Vector3 finalPos;
+                                Vector3 posRelCurrentRoom;
+                                Vector3 posRelInstRoom;
+                                Vector3 dirCurrentRoom;
+                                Vector3 dirInstantiateRoom;
 
 
 
 
-                                tempRoomScript[i].ConnectDoor(0);
-                                i++;
+                                tempRoomScript[i + d].ConnectDoor(0);
                             }
                         }
 
@@ -96,17 +98,19 @@ public class DungeonGenerator_Controller : MonoBehaviour
                             if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
                             {
                                 rand = 1;
-                                tempRooms[i] = Instantiate(NewRoom(rand));
-                                tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+                                tempRooms[i + d] = Instantiate(NewRoom(rand));
+                                tempRoomScript[i + d] = tempRooms[i+d].GetComponent<DungeonGenerator_Room>();
 
                                 //Colocar la room
-                                Vector3 finalPos;
+                                Vector3 posRelCurrentRoom;
+                                Vector3 posRelInstRoom;
+                                Vector3 dirCurrentRoom;
+                                Vector3 dirInstantiateRoom;
 
 
 
 
-                                tempRoomScript[i].ConnectDoor(0);
-                                i++;
+                                tempRoomScript[i + d].ConnectDoor(0);
                             }
                         }
 
@@ -121,17 +125,19 @@ public class DungeonGenerator_Controller : MonoBehaviour
                         if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
                         {
                             rand = 0;
-                            tempRooms[i] = Instantiate(NewRoom(rand));
-                            tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+                            tempRooms[i + d] = Instantiate(NewRoom(rand));
+                            tempRoomScript[i + d] = tempRooms[i+d].GetComponent<DungeonGenerator_Room>();
 
                             //Colocar la room
-                            
+                            Vector3 posRelCurrentRoom;
+                            Vector3 posRelInstRoom;
+                            Vector3 dirCurrentRoom;
+                            Vector3 dirInstantiateRoom;
 
 
 
 
-                            tempRoomScript[i].ConnectDoor(0);
-                            i++;
+                            tempRoomScript[i + d].ConnectDoor(0);
                         }
                     }
 
@@ -146,17 +152,19 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     if (tempRoomScript[currentParentRoom].IsConnected(d) == false)
                     {
                         rand = Random.Range(0, 3);
-                        tempRooms[i] = Instantiate(NewRoom(rand));
-                        tempRoomScript[i] = tempRooms[i].GetComponent<DungeonGenerator_Room>();
+                        tempRooms[i+d] = Instantiate(NewRoom(rand));
+                        tempRoomScript[i+d] = tempRooms[i+d].GetComponent<DungeonGenerator_Room>();
 
                         //Colocar la room
-                        Vector3 finalPos;
+                        Vector3 posRelCurrentRoom;
+                        Vector3 posRelInstRoom;
+                        Vector3 dirCurrentRoom;
+                        Vector3 dirInstantiateRoom;
 
                         
 
 
-                        tempRoomScript[i].ConnectDoor(0);
-                        i++;
+                        tempRoomScript[i+d].ConnectDoor(0);
                     }
                 }
 
