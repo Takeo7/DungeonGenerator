@@ -43,7 +43,7 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public void ConnectDoor(int i)
     {
-        doorsConnected[i] = true;
+        doorsConnected[i] = true;        
     }
 
     public bool IsFullConnected()

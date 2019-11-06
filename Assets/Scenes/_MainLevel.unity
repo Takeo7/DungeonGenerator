@@ -158,6 +158,8 @@ MonoBehaviour:
   - {fileID: 6555278047466990032, guid: 345acb9b8ef762f4ab25a8a35980e9dc, type: 3}
   four_prefabs:
   - {fileID: 6555278047466990032, guid: 14d06b50a94677943b65c44e1350047d, type: 3}
+  end_prefabs:
+  - {fileID: 2305945233494250752, guid: 4370578e71ab9914db3fa6e6c54cb28a, type: 3}
   dungeon_size: 20
 --- !u!4 &619453282
 Transform:
