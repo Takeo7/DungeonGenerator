@@ -113,7 +113,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
                 //Colocar la room
                 Debug.Log("Adding Room to Door " + d);
-                NewRoomTransf(_tempRooms[currentParentRoom], d, _tempRooms[newRoomCount]);
+                LocateNewRoom(_tempRooms[currentParentRoom], d, _tempRooms[newRoomCount]);
 
 
 
@@ -154,30 +154,34 @@ public class DungeonGenerator_Controller : MonoBehaviour
         
     }
 
-    void NewRoomTransf(GameObject c_Room,int c_doorNum, GameObject n_Room)
+    void LocateNewRoom(GameObject c_Room,int c_doorNum, GameObject n_Room) //TODO: NO FUNCIONA JODER!!!!
     {
-        
+        Debug.Log("ROOM TO FOCUS: " + c_Room);
         Transform c_door = c_Room.GetComponent<DungeonGenerator_Room>().GetDoor(c_doorNum);
         Transform n_door = n_Room.GetComponent<DungeonGenerator_Room>().GetDoor(0);
 
-        //Rotation TODO: NO FUNCIONA JODER!!!!
-        Quaternion c_doorRot = c_door.rotation;
+        Vector3 finalPos;
 
-        Vector3 eulerRot = c_doorRot.eulerAngles + Quaternion.Inverse(c_doorRot).eulerAngles;
+        if (c_door.position.x > c_Room.transform.position.x)
+        {
+            finalPos = c_door.position + new Vector3(n_door.localPosition.z, 0);
+        }
+        else if(c_door.position.x < c_Room.transform.position.x)
+        {
+            finalPos = c_door.position - new Vector3(n_door.localPosition.z, 0);
+        }else if (c_door.position.z > c_Room.transform.position.z)
+        {
+            finalPos = c_door.position + new Vector3(0, 0, n_door.localPosition.z);
+        }
+        else
+        {
+            finalPos = c_door.position - new Vector3(0, 0, n_door.localPosition.z);
+        }
 
-        Quaternion finalRot = Quaternion.Euler(eulerRot);
-
-       
-        //Position
-        Vector3 doorPos = c_door.position;
-
-        Vector3 finalPos = doorPos + n_door.localPosition;
-
-        n_Room.transform.rotation = finalRot;
         n_Room.transform.position = finalPos;
 
-
-        
+        //Rotation 
+        n_Room.transform.LookAt(c_Room.transform.position);
     }
     
 
