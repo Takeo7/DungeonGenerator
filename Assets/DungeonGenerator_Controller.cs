@@ -102,7 +102,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
         {
             if (_tempRoomScript[currentParentRoom].IsConnected(d) == false && newRoomCount<dungeon_size)
             {
-                rand = Random.Range(1, randNum+1);
+                rand = Random.Range(1, randNum+1); // poner 1 en rand num
                 if (rand == randNum+1)
                 {
                     rand = 1;
@@ -164,20 +164,23 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
         if (c_door.position.x > c_Room.transform.position.x)
         {
+            Debug.Log("ENTRA");
             finalPos = c_door.position + new Vector3(n_door.localPosition.z, 0);
-        }
-        else if(c_door.position.x < c_Room.transform.position.x)
+        }else if(c_door.position.x < c_Room.transform.position.x)
         {
+            Debug.Log("ENTRA");
             finalPos = c_door.position - new Vector3(n_door.localPosition.z, 0);
         }else if (c_door.position.z > c_Room.transform.position.z)
         {
+            Debug.Log("ENTRA");
             finalPos = c_door.position + new Vector3(0, 0, n_door.localPosition.z);
-        }
-        else
+        }else
         {
+            Debug.Log("ENTRA");
             finalPos = c_door.position - new Vector3(0, 0, n_door.localPosition.z);
         }
 
+        Debug.Log("SALE");
         n_Room.transform.position = finalPos;
 
         //Rotation 
