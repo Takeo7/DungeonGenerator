@@ -61,7 +61,6 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
 
 
-        Debug.Log(length);
         for (int i = 0; i < length; i++)
         {
             if (i == 0)
@@ -70,7 +69,6 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 tempRoomScript[0] = tempRooms[0].GetComponent<DungeonGenerator_Room>();
                 currentParentRoom = 0;
                 newRoomCount++;
-                Debug.Log("Current Parent Room: " + currentParentRoom + " ------ i: " + i);
             }
             else
             {
@@ -97,7 +95,6 @@ public class DungeonGenerator_Controller : MonoBehaviour
         int rand;
 
         int doorsLength = _tempRoomScript[currentParentRoom].GetDoorsCount();
-        Debug.Log("Door num: " + currentParentRoom + " has " + doorsLength + " doors.");
         for (int d = 0; d < doorsLength; d++)
         {
             if (_tempRoomScript[currentParentRoom].IsConnected(d) == false && newRoomCount<dungeon_size)
@@ -109,25 +106,21 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 }
                 _tempRooms[newRoomCount] = Instantiate(NewRoom(rand));
                 _tempRoomScript[newRoomCount] = _tempRooms[newRoomCount].GetComponent<DungeonGenerator_Room>();
-                Debug.Log("New Room in pos: " + (newRoomCount));
-
+                _tempRoomScript[newRoomCount].SetID(newRoomCount);
+                _tempRoomScript[newRoomCount].SetParentRoomID(currentParentRoom);
                 //Colocar la room
-                Debug.Log("Adding Room to Door " + d);
-                LocateNewRoom(_tempRooms[currentParentRoom], d, _tempRooms[newRoomCount]);
+                LocateNewRoom(_tempRooms[currentParentRoom], d, _tempRooms[newRoomCount],i);
 
 
 
 
                 _tempRoomScript[currentParentRoom].ConnectDoor(d); //Connect parent door
-                Debug.Log("Door: " + d + " of Parent Room connected.");
                 _tempRoomScript[newRoomCount].ConnectDoor(0); //Connect first door on new room
-                Debug.Log("Door: " + 0 + " of new Room connected.");
                 newRoomCount++;
             }
             
         }
         currentParentRoom++;
-        Debug.Log("Current Parent Room: " + currentParentRoom + " ------ i: " + i);
     }
 
     GameObject NewRoom(int i)
@@ -154,33 +147,35 @@ public class DungeonGenerator_Controller : MonoBehaviour
         
     }
 
-    void LocateNewRoom(GameObject c_Room,int c_doorNum, GameObject n_Room) //TODO: NO FUNCIONA JODER!!!!
+    void LocateNewRoom(GameObject c_Room,int c_doorNum, GameObject n_Room, int i) //TODO: NO FUNCIONA JODER!!!!
     {
-        Debug.Log("ROOM TO FOCUS: " + c_Room);
         Transform c_door = c_Room.GetComponent<DungeonGenerator_Room>().GetDoor(c_doorNum);
         Transform n_door = n_Room.GetComponent<DungeonGenerator_Room>().GetDoor(0);
 
-        Vector3 finalPos;
+        Vector3 finalPos = Vector3.zero;
 
-        if (c_door.position.x > c_Room.transform.position.x)
-        {
-            Debug.Log("ENTRA");
-            finalPos = c_door.position + new Vector3(n_door.localPosition.z, 0);
-        }else if(c_door.position.x < c_Room.transform.position.x)
-        {
-            Debug.Log("ENTRA");
-            finalPos = c_door.position - new Vector3(n_door.localPosition.z, 0);
-        }else if (c_door.position.z > c_Room.transform.position.z)
-        {
-            Debug.Log("ENTRA");
-            finalPos = c_door.position + new Vector3(0, 0, n_door.localPosition.z);
-        }else
-        {
-            Debug.Log("ENTRA");
-            finalPos = c_door.position - new Vector3(0, 0, n_door.localPosition.z);
-        }
 
-        Debug.Log("SALE");
+
+        finalPos = c_door.position + new Vector3(n_door.localPosition.z * c_door.forward.x, 0, n_door.localPosition.z * c_door.forward.z);
+
+
+        //if (c_door.position.x > c_Room.transform.position.x)
+        //{
+        //    finalPos = c_door.position + new Vector3(n_door.localPosition.z, 0);
+        //}
+        //else if (c_door.position.x < c_Room.transform.position.x)
+        //{
+        //    finalPos = c_door.position + new Vector3(-n_door.localPosition.z, 0);
+        //}
+        //else if (c_door.position.z > c_Room.transform.position.z)
+        //{
+        //    finalPos = c_door.position + new Vector3(0, 0, n_door.localPosition.z);
+        //}
+        //else if (c_door.position.z < c_Room.transform.position.z)
+        //{
+        //    finalPos = c_door.position + new Vector3(0, 0, -n_door.localPosition.z);
+        //}
+
         n_Room.transform.position = finalPos;
 
         //Rotation 

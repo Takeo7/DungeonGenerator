@@ -5,6 +5,11 @@ using UnityEngine;
 public class DungeonGenerator_Room : MonoBehaviour
 {
     [Header("Info of the room")]
+    [Tooltip("Room ID")]
+    [SerializeField]
+    int ID;
+    [SerializeField]
+    int ParentRoomID;
     [Tooltip("Doors")]
     [SerializeField]
     Transform[] doors;
@@ -50,4 +55,15 @@ public class DungeonGenerator_Room : MonoBehaviour
     {
         return isFullConnected;
     }
+    public void SetID(int id)
+    {
+        ID = id;
+    }
+    public int GetID() { return ID; }
+
+    public void SetParentRoomID(int id)
+    {
+       ParentRoomID = id;
+    }
+
 }
