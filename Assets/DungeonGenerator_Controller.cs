@@ -135,16 +135,32 @@ public class DungeonGenerator_Controller : MonoBehaviour
         switch (i)
         {
             case 0:
-                randomRoom = Random.Range(0, one_prefabs.Length-1);
+                randomRoom = Random.Range(0, one_prefabs.Length);
+                if (randomRoom == one_prefabs.Length)
+                {
+                    randomRoom = 0;
+                }
                 return one_prefabs[randomRoom];
             case 1:
-                randomRoom = Random.Range(0, two_prefabs.Length-1);
+                randomRoom = Random.Range(0, two_prefabs.Length);
+                if (randomRoom == two_prefabs.Length)
+                {
+                    randomRoom = 0;
+                }
                 return two_prefabs[randomRoom];
             case 2:
-                randomRoom = Random.Range(0, three_prefabs.Length-1);
+                randomRoom = Random.Range(0, three_prefabs.Length);
+                if (randomRoom == three_prefabs.Length)
+                {
+                    randomRoom = 0;
+                }
                 return three_prefabs[randomRoom];
             case 3:
-                randomRoom = Random.Range(0, four_prefabs.Length-1);
+                randomRoom = Random.Range(0, four_prefabs.Length);
+                if (randomRoom == four_prefabs.Length)
+                {
+                    randomRoom = 0;
+                }
                 return four_prefabs[randomRoom];
             default:
                 randomRoom = Random.Range(0, one_prefabs.Length-1);
@@ -160,32 +176,13 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
         Vector3 finalPos = Vector3.zero;
 
-
-
         finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), 0, n_door.localPosition.z * (c_door.forward.z * 1.1f));
-
-
-        //if (c_door.position.x > c_Room.transform.position.x)
-        //{
-        //    finalPos = c_door.position + new Vector3(n_door.localPosition.z, 0);
-        //}
-        //else if (c_door.position.x < c_Room.transform.position.x)
-        //{
-        //    finalPos = c_door.position + new Vector3(-n_door.localPosition.z, 0);
-        //}
-        //else if (c_door.position.z > c_Room.transform.position.z)
-        //{
-        //    finalPos = c_door.position + new Vector3(0, 0, n_door.localPosition.z);
-        //}
-        //else if (c_door.position.z < c_Room.transform.position.z)
-        //{
-        //    finalPos = c_door.position + new Vector3(0, 0, -n_door.localPosition.z);
-        //}
 
         n_Room.transform.position = finalPos;
 
         //Rotation 
-        n_Room.transform.LookAt(c_Room.transform.position);
+        //n_Room.transform.LookAt(c_Room.transform.position);
+        n_Room.transform.LookAt(c_door.transform.position);
         n_Room.GetComponent<Collider>().enabled = true;
     }
     
