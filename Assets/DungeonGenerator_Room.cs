@@ -66,4 +66,15 @@ public class DungeonGenerator_Room : MonoBehaviour
        ParentRoomID = id;
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (DungeonGenerator_Controller.instance.GetNewRoomCount() == ID)
+        {
+            if (other.CompareTag("Room"))
+            {
+                Destroy(gameObject);
+            }
+        }       
+    }
 }
