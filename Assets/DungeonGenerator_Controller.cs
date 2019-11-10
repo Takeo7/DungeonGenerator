@@ -176,7 +176,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
         Vector3 finalPos = Vector3.zero;
 
-        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), 0, n_door.localPosition.z * (c_door.forward.z * 1.1f));
+        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), n_door.localPosition.y * (c_door.forward.y * 1.1f), n_door.localPosition.z * (c_door.forward.z * 1.1f));
 
         n_Room.transform.position = finalPos;
 
@@ -237,7 +237,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     if (tempRoomScript[j].IsConnected(d) == false)
                     {
                         int rand = Random.Range(0, end_prefabs.Length);
-                        GameObject tempEnd = Instantiate(end_prefabs[rand], tempRoomScript[j].GetDoor(d).position, tempRoomScript[j].GetDoor(d).rotation, tempRooms[j].transform);
+                        GameObject tempEnd = Instantiate(end_prefabs[rand], tempRoomScript[j].GetDoor(d).position, tempRoomScript[j].GetDoor(d).rotation);//, tempRooms[j].transform);
                     }
                 }
             }
