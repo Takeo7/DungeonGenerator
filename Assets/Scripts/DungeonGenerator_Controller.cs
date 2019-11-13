@@ -126,7 +126,10 @@ public class DungeonGenerator_Controller : MonoBehaviour
             }
             
         }
-        currentParentRoom++;
+        if (tempRooms[currentParentRoom + 1] != null)
+        {
+            currentParentRoom++;
+        }
     }
 
     GameObject NewRoom(int i)
@@ -172,24 +175,27 @@ public class DungeonGenerator_Controller : MonoBehaviour
     void LocateNewRoom(GameObject c_Room,int c_doorNum, GameObject n_Room, int i) //TODO: Collider check
     {
         Transform c_door = c_Room.GetComponent<DungeonGenerator_Room>().GetDoor(c_doorNum);
+        Debug.Log("3");
         Transform n_door = n_Room.GetComponent<DungeonGenerator_Room>().GetDoor(0);
-
+        Debug.Log("4");
         Vector3 finalPos = Vector3.zero;
 
-        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), n_door.localPosition.y * (c_door.forward.y * 1.1f), n_door.localPosition.z * (c_door.forward.z * 1.1f));
+        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), 0 , n_door.localPosition.z * (c_door.forward.z * 1.1f));
 
         n_Room.transform.position = finalPos;
 
         //Rotation 
         //n_Room.transform.LookAt(c_Room.transform.position);
         n_Room.transform.LookAt(c_door.transform.position);
+        n_Room.transform.position += new Vector3(0, -(n_door.position.y-n_Room.transform.position.y), 0);
         if( n_Room.GetComponent<DungeonGenerator_Room>().CheckCollidersWithRooms()){
             Destroy(n_Room.gameObject);
         }else{
             c_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(c_doorNum);
             newRoomCount++;
+            n_Room.GetComponent<Collider>().enabled = true;
         }
-        n_Room.GetComponent<Collider>().enabled = true;
+        
     }
     
     public int GetNewRoomCount()
@@ -219,11 +225,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 }
                 else
                 {
-                    //GenerateRooms(tempRoomScript, tempRooms, i, 3);
-
-                    //StartCoroutine("CreateDungeonCoroutine", i);
                     yield return GenerateRoomsCoroutine(i);
-
                 }
             }           
             i++;
@@ -255,7 +257,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
     IEnumerator GenerateRoomsCoroutine(int i)
     {
         int rand;
-
+        Debug.Log("CurrentParentRoomCount: " + currentParentRoom);
         int doorsLength = tempRoomScript[currentParentRoom].GetDoorsCount();
         int d = 0;
 
@@ -287,12 +289,16 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     tempRoomScript[newRoomCount].ConnectDoor(0);
                     tempRoomScript[currentParentRoom].ConnectDoor(d); //Connect parent door
                     newRoomCount++;
+                    
                 }
             }
             d++;
         }
-
-        currentParentRoom++;
+        if (tempRooms[currentParentRoom+1] != null)
+        {
+            currentParentRoom++;
+        }
+        
     }
 
 }
