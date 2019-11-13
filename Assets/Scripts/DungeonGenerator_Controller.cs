@@ -120,9 +120,9 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
 
 
-                _tempRoomScript[currentParentRoom].ConnectDoor(d); //Connect parent door
+                
                 //_tempRoomScript[newRoomCount].ConnectDoor(0); //Connect first door on new room
-                newRoomCount++;
+                
             }
             
         }
@@ -183,6 +183,12 @@ public class DungeonGenerator_Controller : MonoBehaviour
         //Rotation 
         //n_Room.transform.LookAt(c_Room.transform.position);
         n_Room.transform.LookAt(c_door.transform.position);
+        if( n_Room.GetComponent<DungeonGenerator_Room>().CheckCollidersWithRooms()){
+            Destroy(n_Room.gameObject);
+        }else{
+            c_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(c_doorNum);
+            newRoomCount++;
+        }
         n_Room.GetComponent<Collider>().enabled = true;
     }
     

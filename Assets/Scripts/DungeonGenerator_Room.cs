@@ -66,8 +66,21 @@ public class DungeonGenerator_Room : MonoBehaviour
        ParentRoomID = id;
     }
 
+    public bool CheckCollidersWithRooms(){
+        RaycastHit hit;
+        // ajustar box
+        bool isHitted = Physics.BoxCast(transform.position,transform.localScale, transform.forward,out hit, transform.rotation, 10);
+        if(isHitted){
+            if(hit.collider.CompareTag("Room")){
+                return true;               
+            }
+            
+        }
+        return false;
 
-    private void OnTriggerEnter(Collider other)
+    }
+
+    /*private void OnTriggerEnter(Collider other)
     {
         if (DungeonGenerator_Controller.instance.GetNewRoomCount() == ID)
         {
@@ -76,5 +89,5 @@ public class DungeonGenerator_Room : MonoBehaviour
                 Destroy(gameObject);
             }
         }       
-    }
+    }*/
 }
