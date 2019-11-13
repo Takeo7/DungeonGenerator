@@ -180,7 +180,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
         Debug.Log("4");
         Vector3 finalPos = Vector3.zero;
 
-        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), 0 , n_door.localPosition.z * (c_door.forward.z * 1.1f));
+        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.2f), 0 , n_door.localPosition.z * (c_door.forward.z * 1.2f));
 
         n_Room.transform.position = finalPos;
 
@@ -192,6 +192,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
             Destroy(n_Room.gameObject);
         }else{
             c_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(c_doorNum);
+            n_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(0);
             newRoomCount++;
             n_Room.GetComponent<Collider>().enabled = true;
         }

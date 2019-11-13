@@ -33,7 +33,6 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public Transform GetDoor(int i)
     {
-        Debug.Log(" GetDoor | Puerta pedida: " + i + " - Puertas totales: " + (GetDoorsCount() - 1));
         return doors[i];
     }
 
@@ -44,7 +43,6 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public bool IsConnected(int i)
     {
-        Debug.Log(" IsConnected | Puerta pedida: " + i + " - Puertas totales: " + (GetDoorsCount() - 1));
         return doorsConnected[i];
     }
 
@@ -70,7 +68,7 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public bool CheckCollidersWithRooms(){
 
-        Collider[] hits = Physics.OverlapBox(gameObject.transform.position, transform.localScale * 1.1f, Quaternion.identity);
+        Collider[] hits = Physics.OverlapBox(gameObject.transform.position, transform.localScale*0.5f, Quaternion.identity);
         
         if (hits.Length > 0){
             
@@ -97,7 +95,7 @@ public class DungeonGenerator_Room : MonoBehaviour
         Gizmos.color = Color.red;
         //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
             //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireCube(transform.position, transform.localScale * 1.1f);
+            Gizmos.DrawWireCube(transform.position, transform.localScale*0.5f);
     }
 
     /*private void OnTriggerEnter(Collider other)
