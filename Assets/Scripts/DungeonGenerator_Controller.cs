@@ -50,9 +50,10 @@ public class DungeonGenerator_Controller : MonoBehaviour
     private void Start()
     {
         //GenerateDungeon();
-        StartCoroutine("CreateDungeonCoroutine");
+        StartCoroutine("CreateDungeonCoroutine", false);
     }
 
+#region methods no coroutines
     void GenerateDungeon()
     {
         int length = dungeon_size;
@@ -78,6 +79,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 
             }
         }
+
         for (int i = 0; i < length; i++)
         {
             if (tempRooms[i] != null)
@@ -94,6 +96,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 }
             }           
         }
+        
     }
 
     void GenerateRooms(DungeonGenerator_Room[] _tempRoomScript, GameObject[] _tempRooms, int i, int randNum)
@@ -131,7 +134,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
             currentParentRoom++;
         }
     }
-
+#endregion
     GameObject NewRoom(int i)
     {
         int randomRoom;
@@ -175,9 +178,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
     void LocateNewRoom(GameObject c_Room,int c_doorNum, GameObject n_Room, int i) //TODO: Collider check
     {
         Transform c_door = c_Room.GetComponent<DungeonGenerator_Room>().GetDoor(c_doorNum);
-        Debug.Log("3");
         Transform n_door = n_Room.GetComponent<DungeonGenerator_Room>().GetDoor(0);
-        Debug.Log("4");
         Vector3 finalPos = Vector3.zero;
 
         finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.2f), 0 , n_door.localPosition.z * (c_door.forward.z * 1.2f));
@@ -199,6 +200,13 @@ public class DungeonGenerator_Controller : MonoBehaviour
         
     }
     
+    void SecoundRound(){
+        
+        StopAllCoroutines();
+        Debug.Log("SECOND ROUND!!!");
+        StartCoroutine("CreateDungeonCoroutine", true);
+    }
+
     public int GetNewRoomCount()
     {
         return newRoomCount;
@@ -206,23 +214,29 @@ public class DungeonGenerator_Controller : MonoBehaviour
     public void SetNewRoomCount() { newRoomCount++; }
 
 
-    IEnumerator CreateDungeonCoroutine()
+    IEnumerator CreateDungeonCoroutine(bool isSecondRound)
     {
         int i = 0;
-
-        tempRooms = new GameObject[dungeon_size];
-        tempRoomScript = new DungeonGenerator_Room[dungeon_size];
+        
+        if(isSecondRound == false){
+            tempRooms = new GameObject[dungeon_size];
+            tempRoomScript = new DungeonGenerator_Room[dungeon_size];
+        }
+        
 
         while (i < dungeon_size)
         {
             if (tempRooms[i] == null)
             {
-                if (i == 0)
+                if (i == 0 && isSecondRound == false)
                 {
                     tempRooms[0] = Instantiate(NewRoom(3));
                     tempRoomScript[0] = tempRooms[0].GetComponent<DungeonGenerator_Room>();
                     currentParentRoom = 0;
                     newRoomCount++;
+                }else if(i==0 && isSecondRound){
+                    currentParentRoom = 0;
+                    yield return GenerateRoomsCoroutine(i);
                 }
                 else
                 {
@@ -233,8 +247,10 @@ public class DungeonGenerator_Controller : MonoBehaviour
             
         }
 
-
-        // Pone End en las puertas restantes
+        if(newRoomCount < dungeon_size){
+            SecoundRound();
+        }else{
+// Pone End en las puertas restantes
         for (int j = 0; j < dungeon_size; j++)
         {
             if (tempRooms[j] != null)
@@ -254,11 +270,14 @@ public class DungeonGenerator_Controller : MonoBehaviour
 
 
         Debug.Log(newRoomCount);
+        }
+        
     }
     IEnumerator GenerateRoomsCoroutine(int i)
     {
         int rand;
-        Debug.Log("CurrentParentRoomCount: " + currentParentRoom);
+        
+        Debug.Log("CurrentParentRoom: "+currentParentRoom+" - Object: "+tempRoomScript[currentParentRoom]);
         int doorsLength = tempRoomScript[currentParentRoom].GetDoorsCount();
         int d = 0;
 
@@ -278,10 +297,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 //Colocar la room
                 LocateNewRoom(tempRooms[currentParentRoom], d, tempRooms[newRoomCount], i);
 
-                //_tempRoomScript[newRoomCount].ConnectDoor(0); //Connect first door on new room
-                //newRoomCount++;
             }
-            //yield return new WaitForSeconds(0.2f);
             yield return new WaitForEndOfFrame();
             if (tempRooms.Length-1 >= newRoomCount)
             {

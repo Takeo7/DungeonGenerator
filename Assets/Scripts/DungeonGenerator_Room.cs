@@ -84,7 +84,7 @@ public class DungeonGenerator_Room : MonoBehaviour
             
             
         }
-        Debug.Log("Room set: " + ID);
+        
         return false;
 
     }
