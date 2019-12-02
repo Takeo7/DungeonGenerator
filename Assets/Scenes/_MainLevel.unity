@@ -150,8 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   one_prefabs:
-  - {fileID: 6555278047466990032, guid: 0be948c23ad18fc4d8099ba3937d7bd7, type: 3}
-  - {fileID: 6555278047466990032, guid: 38fb1e0f1e9e63342a2a87296f560205, type: 3}
+  - {fileID: 8756130880427449622, guid: 69b57d87c58eef44ebb8447436d9114a, type: 3}
   two_prefabs:
   - {fileID: 6555278047466990032, guid: 2047fba80cd1dfc4d84f52375a3675d5, type: 3}
   - {fileID: 302584355989320452, guid: c0e59a895dd1b50489ffe2a515e57a6b, type: 3}
@@ -160,10 +159,10 @@ MonoBehaviour:
   three_prefabs:
   - {fileID: 6555278047466990032, guid: 345acb9b8ef762f4ab25a8a35980e9dc, type: 3}
   four_prefabs:
-  - {fileID: 6555278047466990032, guid: 14d06b50a94677943b65c44e1350047d, type: 3}
+  - {fileID: 8756130880427449622, guid: e01da2d7d72877a49aa37942af38612d, type: 3}
   end_prefabs:
   - {fileID: 2305945233494250752, guid: 4370578e71ab9914db3fa6e6c54cb28a, type: 3}
-  dungeon_size: 50
+  dungeon_size: 20
 --- !u!4 &619453282
 Transform:
   m_ObjectHideFlags: 0
@@ -346,7 +345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946598236}
   m_LocalRotation: {x: 0.093658045, y: -0, z: -0, w: 0.99560446}
-  m_LocalPosition: {x: 0, y: 5.93, z: -10}
+  m_LocalPosition: {x: 0, y: 22.8, z: -46.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

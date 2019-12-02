@@ -20,6 +20,12 @@ public class DungeonGenerator_Room : MonoBehaviour
     [Tooltip("Room Size")]
     [SerializeField]
     byte size;
+    [SerializeField]
+    Vector3 bounds;
+    [SerializeField]
+    Vector3 boundsAdd;
+    [SerializeField]
+    Collider[] cols;
 
     void Awake()
     {
@@ -33,7 +39,6 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public Transform GetDoor(int i)
     {
-        Debug.Log(" GetDoor | Puerta pedida: " + i + " - Puertas totales: " + (GetDoorsCount() - 1));
         return doors[i];
     }
 
@@ -44,7 +49,6 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public bool IsConnected(int i)
     {
-        Debug.Log(" IsConnected | Puerta pedida: " + i + " - Puertas totales: " + (GetDoorsCount() - 1));
         return doorsConnected[i];
     }
 
@@ -70,25 +74,34 @@ public class DungeonGenerator_Room : MonoBehaviour
 
     public bool CheckCollidersWithRooms(){
 
-        Collider[] hits = Physics.OverlapBox(gameObject.transform.position, transform.localScale * 1.1f, Quaternion.identity);
-        
-        if (hits.Length > 0){
-            
+        Collider[] hits = Physics.OverlapBox(gameObject.transform.position+boundsAdd, bounds/2, Quaternion.identity);
+
+        if (hits.Length > 0)
+        {
+
             for (int i = 0; i < hits.Length; i++)
             {
-                
+
                 if (hits[i].CompareTag("Room"))
                 {
-                    Debug.Log("Room destroyed: "+ID);
                     return true;
                 }
             }
-            
-            
+
+
         }
-        Debug.Log("Room set: " + ID);
+        EnableColliders();
         return false;
 
+    }
+
+    public void EnableColliders()
+    {
+        Debug.Log("Enabled colliders for: " + ID);
+        foreach (Collider item in cols)
+        {
+            item.enabled = true;
+        }
     }
 
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
@@ -97,7 +110,7 @@ public class DungeonGenerator_Room : MonoBehaviour
         Gizmos.color = Color.red;
         //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
             //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireCube(transform.position, transform.localScale * 1.1f);
+            Gizmos.DrawWireCube(transform.position+boundsAdd, bounds);
     }
 
     /*private void OnTriggerEnter(Collider other)
