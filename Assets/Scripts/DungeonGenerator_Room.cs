@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DungeonGenerator_Room : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class DungeonGenerator_Room : MonoBehaviour
         {
             doorsConnected[i] = false;
         }
+        
     }
 
     public Transform GetDoor(int i)

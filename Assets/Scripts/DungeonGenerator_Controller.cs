@@ -37,12 +37,22 @@ public class DungeonGenerator_Controller : MonoBehaviour
     GameObject[] four_prefabs;
     [SerializeField]
     GameObject[] end_prefabs;
+    [SerializeField]
+    GameObject endFloor;
+    [Space]
+    [Tooltip("Initial Room door's")]
+    [SerializeField]
+    [Range(1,4)]
+    int initialRoomDoors = 1;
     [Space]
     [Tooltip("Size of the dungeon in squares^2")]
     [SerializeField]
     int dungeon_size;
     int currentParentRoom;
     int newRoomCount;
+    [Space]
+    [SerializeField]
+    NavMeshController_ nvmc;
 
     //-----
 
@@ -154,13 +164,13 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     randomRoom = 0;
                 }
                 return two_prefabs[randomRoom];
-            case 2:
+            /*case 2:
                 randomRoom = Random.Range(0, three_prefabs.Length);
                 if (randomRoom == three_prefabs.Length)
                 {
                     randomRoom = 0;
                 }
-                return three_prefabs[randomRoom];
+                return three_prefabs[randomRoom];*/
             case 3:
                 randomRoom = Random.Range(0, four_prefabs.Length);
                 if (randomRoom == four_prefabs.Length)
@@ -169,8 +179,8 @@ public class DungeonGenerator_Controller : MonoBehaviour
                 }
                 return four_prefabs[randomRoom];
             default:
-                randomRoom = Random.Range(0, one_prefabs.Length-1);
-                return one_prefabs[randomRoom];
+                randomRoom = Random.Range(0, two_prefabs.Length-1);
+                return two_prefabs[randomRoom];
         }
         
     }
@@ -181,14 +191,17 @@ public class DungeonGenerator_Controller : MonoBehaviour
         Transform n_door = n_Room.GetComponent<DungeonGenerator_Room>().GetDoor(0);
         Vector3 finalPos = Vector3.zero;
 
-        finalPos = c_door.position + new Vector3(n_door.localPosition.z * (c_door.forward.x * 1.1f), 0 , n_door.localPosition.z * (c_door.forward.z * 1.1f));
+        finalPos = c_door.position + new Vector3(n_door.position.x * (c_door.forward.x * 1.1f), 0 , n_door.position.z * (c_door.forward.z * 1.1f));
 
         n_Room.transform.position = finalPos;
 
         //Rotation 
         //n_Room.transform.LookAt(c_Room.transform.position);
+
         n_Room.transform.LookAt(c_door.transform.position);
-        n_Room.transform.position += new Vector3(0, -(n_door.position.y-n_Room.transform.position.y), 0);
+        n_Room.transform.position += c_door.position - n_door.position;
+
+        /*
         if( n_Room.GetComponent<DungeonGenerator_Room>().CheckCollidersWithRooms()){
             Destroy(n_Room.gameObject);
         }else{
@@ -196,8 +209,8 @@ public class DungeonGenerator_Controller : MonoBehaviour
             n_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(0);
             newRoomCount++;
             //n_Room.GetComponent<Collider>().enabled = true;
-        }
-        
+        }*/
+
     }
     
     public int GetNewRoomCount()
@@ -220,7 +233,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    tempRooms[0] = Instantiate(NewRoom(3));
+                    tempRooms[0] = Instantiate(NewRoom(initialRoomDoors-1));
                     tempRoomScript[0] = tempRooms[0].GetComponent<DungeonGenerator_Room>();
                     currentParentRoom = 0;
                     tempRoomScript[0].EnableColliders();
@@ -250,12 +263,18 @@ public class DungeonGenerator_Controller : MonoBehaviour
                         int rand = Random.Range(0, end_prefabs.Length);
                         GameObject tempEnd = Instantiate(end_prefabs[rand], tempRoomScript[j].GetDoor(d).position, tempRoomScript[j].GetDoor(d).rotation);//, tempRooms[j].transform);
                     }
+                    else
+                    {
+                        GameObject tempendfloor = Instantiate(endFloor, tempRoomScript[j].GetDoor(d).position, tempRoomScript[j].GetDoor(d).rotation);
+                    }
+                    
                 }
             }
         }
 
         //Finished dungeon
-        
+        nvmc.BakeNavMesh();
+        Debug.Log("Navmesh build");
         Debug.Log(newRoomCount);
     }
     IEnumerator GenerateRoomsCoroutine(int i)
