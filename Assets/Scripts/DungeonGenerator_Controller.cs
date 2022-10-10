@@ -276,6 +276,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
         nvmc.BakeNavMesh();
         Debug.Log("Navmesh build");
         Debug.Log(newRoomCount);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
     }
     IEnumerator GenerateRoomsCoroutine(int i)
     {
