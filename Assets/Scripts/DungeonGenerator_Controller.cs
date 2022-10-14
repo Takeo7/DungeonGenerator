@@ -150,13 +150,13 @@ public class DungeonGenerator_Controller : MonoBehaviour
         int randomRoom;
         switch (i)
         {
-            case 0:
+            /*case 0:
                 randomRoom = Random.Range(0, one_prefabs.Length);
                 if (randomRoom == one_prefabs.Length)
                 {
                     randomRoom = 0;
                 }
-                return one_prefabs[randomRoom];
+                return one_prefabs[randomRoom];*/
             case 1:
                 randomRoom = Random.Range(0, two_prefabs.Length);
                 if (randomRoom == two_prefabs.Length)
@@ -171,13 +171,13 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     randomRoom = 0;
                 }
                 return three_prefabs[randomRoom];*/
-            case 3:
+            /*case 3:
                 randomRoom = Random.Range(0, four_prefabs.Length);
                 if (randomRoom == four_prefabs.Length)
                 {
                     randomRoom = 0;
                 }
-                return four_prefabs[randomRoom];
+                return four_prefabs[randomRoom];*/
             default:
                 randomRoom = Random.Range(0, two_prefabs.Length-1);
                 return two_prefabs[randomRoom];
