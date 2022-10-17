@@ -150,37 +150,69 @@ public class DungeonGenerator_Controller : MonoBehaviour
         int randomRoom;
         switch (i)
         {
-            /*case 0:
-                randomRoom = Random.Range(0, one_prefabs.Length);
-                if (randomRoom == one_prefabs.Length)
+            case 0:
+
+                if (one_prefabs.Length != 0)
                 {
-                    randomRoom = 0;
+                    randomRoom = Random.Range(0, one_prefabs.Length);
+                    if (randomRoom == one_prefabs.Length)
+                    {
+                        randomRoom = 0;
+                    }
+                    return one_prefabs[randomRoom];
                 }
-                return one_prefabs[randomRoom];*/
+                else
+                {
+                    return two_prefabs[0];
+                }
+                
             case 1:
-                randomRoom = Random.Range(0, two_prefabs.Length);
-                if (randomRoom == two_prefabs.Length)
+                if (two_prefabs.Length != 0)
                 {
-                    randomRoom = 0;
+                    randomRoom = Random.Range(0, two_prefabs.Length);
+                    if (randomRoom == two_prefabs.Length)
+                    {
+                        randomRoom = 0;
+                    }
+                    return two_prefabs[randomRoom];
                 }
-                return two_prefabs[randomRoom];
-            /*case 2:
-                randomRoom = Random.Range(0, three_prefabs.Length);
-                if (randomRoom == three_prefabs.Length)
+                else
                 {
-                    randomRoom = 0;
+                    return two_prefabs[0];
                 }
-                return three_prefabs[randomRoom];*/
-            /*case 3:
-                randomRoom = Random.Range(0, four_prefabs.Length);
-                if (randomRoom == four_prefabs.Length)
+                
+            case 2:
+                if (three_prefabs.Length != 0)
                 {
-                    randomRoom = 0;
+                    randomRoom = Random.Range(0, three_prefabs.Length);
+                    if (randomRoom == three_prefabs.Length)
+                    {
+                        randomRoom = 0;
+                    }
+                    return three_prefabs[randomRoom];
                 }
-                return four_prefabs[randomRoom];*/
+                else
+                {
+                    return two_prefabs[0];
+                }
+                
+            case 3:
+                if (four_prefabs.Length != 0)
+                {
+                    randomRoom = Random.Range(0, four_prefabs.Length);
+                    if (randomRoom == four_prefabs.Length)
+                    {
+                        randomRoom = 0;
+                    }
+                    return four_prefabs[randomRoom];
+                }
+                else
+                {
+                    return two_prefabs[0];
+                }
+               
             default:
-                randomRoom = Random.Range(0, two_prefabs.Length-1);
-                return two_prefabs[randomRoom];
+                return two_prefabs[0];
         }
         
     }
@@ -201,15 +233,11 @@ public class DungeonGenerator_Controller : MonoBehaviour
         n_Room.transform.LookAt(c_door.transform.position);
         n_Room.transform.position += c_door.position - n_door.position;
 
-        /*
+        
         if( n_Room.GetComponent<DungeonGenerator_Room>().CheckCollidersWithRooms()){
             Destroy(n_Room.gameObject);
-        }else{
-            c_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(c_doorNum);
-            n_Room.GetComponent<DungeonGenerator_Room>().ConnectDoor(0);
-            newRoomCount++;
-            //n_Room.GetComponent<Collider>().enabled = true;
-        }*/
+
+        }
 
     }
     
@@ -236,7 +264,6 @@ public class DungeonGenerator_Controller : MonoBehaviour
                     tempRooms[0] = Instantiate(NewRoom(initialRoomDoors-1));
                     tempRoomScript[0] = tempRooms[0].GetComponent<DungeonGenerator_Room>();
                     currentParentRoom = 0;
-                    tempRoomScript[0].EnableColliders();
                     newRoomCount++;
                 }
                 else

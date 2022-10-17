@@ -9,13 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     GameObject player;
     [SerializeField]
-    CharacterController controller;
-    [SerializeField]
     Transform cam;
     [SerializeField]
     Animator anim;
     [SerializeField]
     Rigidbody rb;
+    [SerializeField]
+    NavMeshAgent nma;
 
     [Space]
     [SerializeField]
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             Debug.Log("moveDir: " + moveDir + "\nnovedir.normalized: " + moveDir.normalized);
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            nma.Move(moveDir.normalized * speed * Time.deltaTime);
         }
         else if (IsWalking == true)
         {

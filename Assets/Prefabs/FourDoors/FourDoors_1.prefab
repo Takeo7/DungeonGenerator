@@ -125,6 +125,51 @@ Transform:
   m_Father: {fileID: 7309437407585499738}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1807896038886475773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6519147778240340793}
+  - component: {fileID: 5329651564406856897}
+  m_Layer: 0
+  m_Name: CollCheck
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6519147778240340793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807896038886475773}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7309437407585499738}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5329651564406856897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807896038886475773}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9, y: 4.5, z: 14.34}
+  m_Center: {x: 0, y: 2.51, z: 0}
 --- !u!1 &5281455545520688981
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,19 +383,19 @@ Transform:
   m_GameObject: {fileID: 8756130880427449622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1590261230345963835}
-  - {fileID: 1220474071682545778}
-  - {fileID: 7265720567487976720}
-  - {fileID: 2065342787517898021}
-  - {fileID: 5152961059169107172}
   - {fileID: 2630174775843674676}
   - {fileID: 8351162872784019898}
   - {fileID: 1285641644572400385}
   - {fileID: 8074845625856043725}
   - {fileID: 7560825624235405602}
+  - {fileID: 1220474071682545778}
+  - {fileID: 7265720567487976720}
+  - {fileID: 2065342787517898021}
+  - {fileID: 5152961059169107172}
   - {fileID: 6078971602648453349}
   - {fileID: 5035429457644057347}
   - {fileID: 3078654909487373472}
@@ -363,6 +408,7 @@ Transform:
   - {fileID: 5219410435948467487}
   - {fileID: 468497266385722487}
   - {fileID: 4170758362980932033}
+  - {fileID: 6519147778240340793}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,11 +465,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138718, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -506,11 +552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137298, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_LocalPosition.x
@@ -592,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137298, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_RootOrder
@@ -678,11 +724,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138718, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -765,11 +811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137298, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_LocalPosition.x
@@ -848,6 +894,10 @@ PrefabInstance:
     - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_06 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 438576, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_RootOrder
@@ -930,6 +980,10 @@ PrefabInstance:
     - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_06 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 438576, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_RootOrder
@@ -1015,11 +1069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138718, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1099,6 +1153,10 @@ PrefabInstance:
     - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 438576, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_RootOrder
@@ -1181,6 +1239,10 @@ PrefabInstance:
     - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_06 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 438576, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_RootOrder
@@ -1266,11 +1328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138718, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 462106, guid: cd0f01e625e553e4da51ffa4b8e3848d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1350,6 +1412,10 @@ PrefabInstance:
     - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_06 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 438576, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_RootOrder
@@ -1435,11 +1501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137298, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1521,11 +1587,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137298, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1604,6 +1670,10 @@ PrefabInstance:
     - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_06 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 183648, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 438576, guid: 42988b617e6b4924e88885352823ba7f, type: 3}
       propertyPath: m_RootOrder
@@ -1689,11 +1759,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137298, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_TagString
-      value: Room
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 450008, guid: 9830f561f80768b4f92139c1c15bc835, type: 3}
       propertyPath: m_LocalPosition.x

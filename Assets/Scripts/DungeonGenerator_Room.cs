@@ -92,19 +92,10 @@ public class DungeonGenerator_Room : MonoBehaviour
 
 
         }
-        EnableColliders();
         return false;
 
     }
 
-    public void EnableColliders()
-    {
-        Debug.Log("Enabled colliders for: " + ID);
-        foreach (Collider item in cols)
-        {
-            item.enabled = true;
-        }
-    }
 
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     void OnDrawGizmos()
