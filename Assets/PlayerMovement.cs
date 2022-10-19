@@ -86,11 +86,21 @@ public class PlayerMovement : MonoBehaviour
             IsRunning = !IsRunning;
             anim.SetBool("IsRunning", IsRunning);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            anim.SetTrigger("IsJumping");
+            if (IsJumping == false)
+            {
+                IsJumping = true;
+                anim.SetTrigger("IsJumping");
+            }
+            
         }
 
 
+    }
+
+    public void SetJumpFalse()
+    {
+        IsJumping = false;
     }
 }
