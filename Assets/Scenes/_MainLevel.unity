@@ -503,7 +503,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -574,10 +574,10 @@ MonoBehaviour:
   one_prefabs:
   - {fileID: 5314643387347782945, guid: c2742b67698338043965d9dd070ba7eb, type: 3}
   two_prefabs:
-  - {fileID: 3181385342476323831, guid: 83c89266a7e65bc4a88d8a695acc385a, type: 3}
+  - {fileID: 5314643387347782945, guid: b12f0c1cbd4a5634981b1fe5e2c4e706, type: 3}
+  - {fileID: 5314643387347782945, guid: 085cddec3106fc94a88089ee8b6ac1fa, type: 3}
   three_prefabs: []
-  four_prefabs:
-  - {fileID: 8756130880427449622, guid: 6f4a0feea2c35d94db7446d672da77f9, type: 3}
+  four_prefabs: []
   end_prefabs:
   - {fileID: 2305945233494250752, guid: 4370578e71ab9914db3fa6e6c54cb28a, type: 3}
   endFloor: {fileID: 8477950886627285889, guid: 44a10712c52cd9e4083aca1cfb8ca7e3,
@@ -834,17 +834,17 @@ PrefabInstance:
     - target: {fileID: 4509561423286037942, guid: 801f939f040e8cf41bb46bb1849a9b5e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.054691974
+      value: 0.05469197
       objectReference: {fileID: 0}
     - target: {fileID: 4509561423286037942, guid: 801f939f040e8cf41bb46bb1849a9b5e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -9.514393e-16
+      value: -3.5395805e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4509561423286037942, guid: 801f939f040e8cf41bb46bb1849a9b5e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 6.2628485e-17
+      value: 4.5691203e-18
       objectReference: {fileID: 0}
     - target: {fileID: 7379470755754858627, guid: 801f939f040e8cf41bb46bb1849a9b5e,
         type: 3}

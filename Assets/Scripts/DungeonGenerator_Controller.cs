@@ -223,7 +223,10 @@ public class DungeonGenerator_Controller : MonoBehaviour
         Transform n_door = n_Room.GetComponent<DungeonGenerator_Room>().GetDoor(0);
         Vector3 finalPos = Vector3.zero;
 
-        finalPos = c_door.position + new Vector3(n_door.position.x * (c_door.forward.x * 1.1f), 0 , n_door.position.z * (c_door.forward.z * 1.1f));
+        //finalPos = c_door.position + new Vector3(n_door.position.x * (c_door.forward.x * 1.1f), 0 , n_door.position.z * (c_door.forward.z * 1.1f));
+        Debug.Log(c_door.forward);
+        Vector3 diference = new Vector3((n_door.transform.localPosition.z - n_Room.transform.localPosition.z) * c_door.forward.x, 0, (n_door.transform.localPosition.z - n_Room.transform.localPosition.z) * c_door.forward.z);
+        finalPos = c_door.transform.position + diference;
 
         n_Room.transform.position = finalPos;
 
@@ -308,7 +311,7 @@ public class DungeonGenerator_Controller : MonoBehaviour
     IEnumerator GenerateRoomsCoroutine(int i)
     {
         int rand;
-        Debug.Log("CurrentParentRoomCount: " + currentParentRoom);
+        //Debug.Log("CurrentParentRoomCount: " + currentParentRoom);
         int doorsLength = tempRoomScript[currentParentRoom].GetDoorsCount();
         int d = 0;
 

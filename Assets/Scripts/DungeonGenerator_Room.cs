@@ -86,7 +86,8 @@ public class DungeonGenerator_Room : MonoBehaviour
 
                 if (hits[i].CompareTag("Room"))
                 {
-                    return true;
+                    Debug.Log("Found a collider in the room placed");
+                    //return true;
                 }
             }
 
